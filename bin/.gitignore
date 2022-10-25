@@ -26,6 +26,10 @@ dist/
 # JetBrains IDE
 .idea/
 
+# Netbeans IDE
+.project
+bin/
+
 # Unit test reports
 TEST*.xml
 
