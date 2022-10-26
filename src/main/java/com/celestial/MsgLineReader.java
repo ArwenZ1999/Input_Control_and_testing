@@ -4,7 +4,7 @@ import java.io.InputStream;
 
 public class MsgLineReader extends MsgReader implements IElementReader
 {
-	public MsgLineReader(CustomPrompt cp)
+	public MsgLineReader(IPrompt cp)
 	{
 		super(cp); //cALLING CONSTRUCTOR FROM PARENTS
 	}

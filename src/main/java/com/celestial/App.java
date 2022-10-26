@@ -18,9 +18,10 @@ public class App
         ArrayList<TextBlock> lines = new ArrayList<>(10);
         int lineNo = 0;
         CustomPrompt cp=new CustomPrompt();
+        FunckyPrompt fk=new FunckyPrompt();
         ArrayList<IElementReader> readers=new ArrayList<>(2);
         readers.add(new MsgLineReader(cp));
-        readers.add(new MsgElementReader(cp));    
+        readers.add(new MsgElementReader(fk));    
 
         try
         {
@@ -28,7 +29,7 @@ public class App
             {
             	for(var reader:readers)
             	{
-            		lineRead=readers.readFromKeyboard();
+            		lineRead=reader.readFromKeyboard(System.in);
             		if (lineRead!=null)
             		{
             			if(lineRead.equalsIgnoreCase("QUIT"))

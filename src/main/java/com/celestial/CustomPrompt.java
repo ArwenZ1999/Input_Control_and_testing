@@ -1,10 +1,11 @@
 package com.celestial;
 
-public class CustomPrompt
+public class CustomPrompt implements IPrompt
 {
+	@Override
 	public void prompt(String msg)
 	{
-		System.out.println(msg);
+		System.out.print("><"+msg+"><");
 		
 	}
 }
