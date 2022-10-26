@@ -13,22 +13,35 @@ public class App
 {
     public static void main( String[] args )
     {
-        String lineRead;
-        Scanner sc = new Scanner(System.in);
+        String lineRead="";
+        boolean exitApp=false;
         ArrayList<TextBlock> lines = new ArrayList<>(10);
         int lineNo = 0;
-        MsgLineReader mlr = new MsgLineReader( System.in );
-        		
-        
+        ArrayList<IElementReader> readers=new ArrayList<>(2);
+        readers.add(new MsgLineReader());
+        readers.add(new MsgElementReader());    
+
         try
         {
-            while((lineRead = mlr.readFromKeyboard()) != null )
+            while(!exitApp && lineRead !=null )
             {
-                if( lineRead.equalsIgnoreCase("QUIT"))
-                	break;
-                TextBlock tb = new TextBlock(++lineNo, lineRead);
-            	lines.add(tb);
-                System.out.println(lineRead);
+            	for(var reader:readers)
+            	{
+            		lineRead=readers.readFromKeyboard();
+            		if (lineRead!=null)
+            		{
+            			if(lineRead.equalsIgnoreCase("QUIT"))
+            			{
+            				exitApp=true;
+            				break;
+            			}
+            			TextBlock tb=new TextBlock(++lineNo,lineRead);
+            			lines.add(tb);
+            			System.out.println(lineRead);
+            		}else
+            			break;
+            	}
+
             }
         }catch( NoSuchElementException e )
         {}
