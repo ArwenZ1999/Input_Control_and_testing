@@ -1,19 +1,20 @@
 package com.celestial;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
-public class MsgElementReader extends ElementReader 
+public class MsgElementReader extends MsgReader implements IElementReader
 {
-	@Override
-	protected void prompt()
+	public MsgElementReader(CustomPrompt cp)
 	{
-		System.out.print("enter a token):");
+		super(cp); //cALLING CONSTRUCTOR FROM PARENTS
 	}
 	@Override
 	public String readFromKeyboard(InputStream is )
 	{
+
 		Scanner theScanner=new Scanner(is);
-		prompt();
+		itsPrompt.prompt("Enter a token(hit enter):");//inject
 		return theScanner.next();
 	}
 
